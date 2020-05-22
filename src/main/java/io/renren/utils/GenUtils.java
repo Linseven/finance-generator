@@ -153,7 +153,9 @@ public class GenUtils {
     public static String tableToJava(String tableName, String[] tablePrefixArray) {
         if(null != tablePrefixArray && tablePrefixArray.length>0){
             for(String tablePrefix : tablePrefixArray){
-                tableName = tableName.replace(tablePrefix, "");
+                if(tableName.startsWith(tablePrefix)){
+                    tableName = tableName.substring(tablePrefix.length());
+                }
             }
         }
         return columnToJava(tableName);
